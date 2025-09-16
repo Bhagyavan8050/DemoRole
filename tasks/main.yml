@@ -1,0 +1,16 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for test
+- name: Ensure Apache2 (httpd) is installed and cache is updated
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Deploy MSSquare homepage
+  ansible.builtin.copy:
+    src: files/index.html   # If index.html is inside role's "files/" dir, no need to write "files/"
+    dest: /var/www/html/index.html
+    owner: root
+    group: root
+    mode: '0644'
